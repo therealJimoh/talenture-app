@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, FormWrapper } from "./style";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -13,33 +13,6 @@ const initialValues = {
   password: "",
   confirm_password: "",
 };
-
-// const validate = (values) => {
-//   let errors = {};
-
-//   if (!values.first_name) {
-//     errors.first_name = "This field is Required";
-//   }
-//   if (!values.last_name) {
-//     errors.last_name = "This field is Required";
-//   }
-//   if (!values.brand_name) {
-//     errors.brand_name = "This field is Required";
-//   }
-//   if (!values.email) {
-//     errors.email = "This field is Required";
-//   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//     errors.email = "Invalid email format";
-//   }
-//   if (!values.password) {
-//     errors.password = "This field is Required";
-//   }
-//   if (!values.confirm_password) {
-//     errors.confirm_password = "This field is Required";
-//   }
-
-//   return errors;
-// };
 
 const validationSchema = Yup.object({
   first_name: Yup.string()
@@ -71,7 +44,6 @@ const validationSchema = Yup.object({
 const Signup = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
-  const history = useHistory();
   
 
   const onSubmit = async (values, onSubmitProps) => {
@@ -90,7 +62,6 @@ const Signup = () => {
       setError(null);
       setSuccess(result.data.message);
       onSubmitProps.resetForm();
-      history.push("/login")
     }
   };
 
