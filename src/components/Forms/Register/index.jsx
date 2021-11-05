@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, FormWrapper } from "./style";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -71,6 +71,8 @@ const validationSchema = Yup.object({
 const Signup = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+  const history = useHistory();
+  
 
   const onSubmit = async (values, onSubmitProps) => {
     const { ...data } = values;
@@ -88,6 +90,7 @@ const Signup = () => {
       setError(null);
       setSuccess(result.data.message);
       onSubmitProps.resetForm();
+      history.push("/login")
     }
   };
 
