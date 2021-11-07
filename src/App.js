@@ -1,4 +1,3 @@
-import "./App.css";
 import { useState, useEffect } from "react";
 import Home from "./pages/home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
