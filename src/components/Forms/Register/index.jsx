@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, FormWrapper } from "./style";
-import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -44,7 +44,6 @@ const validationSchema = Yup.object({
 const Signup = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
-  
 
   const onSubmit = async (values, onSubmitProps) => {
     const { ...data } = values;
@@ -65,12 +64,6 @@ const Signup = () => {
     }
   };
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema: validationSchema,
-  });
-
   return (
     <>
       <Container>
@@ -78,95 +71,50 @@ const Signup = () => {
         <FormWrapper>
           <span className="formError">{error ? error : ""}</span>
           <span className="formSuccess">{success ? success : ""}</span>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="formControl">
-              <label htmlFor="firstname">First Name</label>
-              <input
-                type="text"
-                className="first_name"
-                name="first_name"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.first_name}
-              />
-              {formik.touched.first_name && formik.errors.first_name ? (
-                <div className="errors">{formik.errors.first_name}</div>
-              ) : null}
-            </div>
-            <div className="formControl">
-              <label htmlFor="lastname">Last Name</label>
-              <input
-                type="text"
-                className="last_name"
-                name="last_name"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.last_name}
-              />
-              {formik.touched.last_name && formik.errors.last_name ? (
-                <div className="errors">{formik.errors.last_name}</div>
-              ) : null}
-            </div>
-            <div className="formControl">
-              <label htmlFor="brandname">Brand Name</label>
-              <input
-                type="text"
-                className="brand_name"
-                name="brand_name"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.brand_name}
-              />
-              {formik.touched.brand_name && formik.errors.brand_name ? (
-                <div className="errors"> {formik.errors.brand_name}</div>
-              ) : null}
-            </div>
-            <div className="formControl">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                className="email"
-                name="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <div className="errors">{formik.errors.email}</div>
-              ) : null}
-            </div>
-            <div className="formControl">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="password"
-                name="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div className="errors">{formik.errors.password}</div>
-              ) : null}
-            </div>
-            <div className="formControl">
-              <label htmlFor="confirmpassword">Confirm Password</label>
-              <input
-                type="password"
-                className="confirm_password"
-                name="confirm_password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.confirm_password}
-              />
-              {formik.touched.confirm_password &&
-              formik.errors.confirm_password ? (
-                <div className="errors">{formik.errors.confirm_password}</div>
-              ) : null}
-            </div>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            <Form>
+              <div className="formControl">
+                <label htmlFor="firstname">First Name</label>
+                <Field type="text" className="first_name" name="first_name" />
+                <ErrorMessage name="first_name" />
+              </div>
+              <div className="formControl">
+                <label htmlFor="lastname">Last Name</label>
+                <Field type="text" className="last_name" name="last_name" />
+                <ErrorMessage name="last_name" />
+              </div>
+              <div className="formControl">
+                <label htmlFor="brandname">Brand Name</label>
+                <Field type="text" className="brand_name" name="brand_name" />
+                <ErrorMessage name="brand_name" />
+              </div>
+              <div className="formControl">
+                <label htmlFor="email">Email</label>
+                <Field type="email" className="email" name="email" />
+                <ErrorMessage name="email" />
+              </div>
+              <div className="formControl">
+                <label htmlFor="password">Password</label>
+                <Field type="password" className="password" name="password" />
+                <ErrorMessage name="password" />
+              </div>
+              <div className="formControl">
+                <label htmlFor="confirmpassword">Confirm Password</label>
+                <Field
+                  type="password"
+                  className="confirm_password"
+                  name="confirm_password"
+                />
+                <ErrorMessage name="confirm_password" />
+              </div>
 
-            <button type="submit"> Create Account </button>
-          </form>
+              <button type="submit"> Create Account </button>
+            </Form>
+          </Formik>
         </FormWrapper>
 
         <h3>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Container, FormWrapper } from "./style";
-import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { withRouter } from "react-router";
@@ -43,50 +43,32 @@ const Login = ({ isAuth, setIsAuth }) => {
       });
   };
 
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit,
-  });
-
   return (
     <>
       <Container>
         <h1>Log in</h1>
         <FormWrapper>
           <span className="loginError">{error ? error : ""}</span>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="formControl">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                className="email"
-                name="email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <div className="errors">{formik.errors.email}</div>
-              ) : null}
-            </div>
-            <div className="formControl">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="password"
-                name="password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div className="errors">{formik.errors.password}</div>
-              ) : null}
-            </div>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            <Form>
+              <div className="formControl">
+                <label htmlFor="email">Email</label>
+                <Field type="email" className="email" name="email" />
+                <ErrorMessage name="email" />
+              </div>
+              <div className="formControl">
+                <label htmlFor="password">Password</label>
+                <Field type="password" className="password" name="password" />
+                <ErrorMessage name="password" />
+              </div>
 
-            <button type="submit"> Log in </button>
-          </form>
+              <button type="submit"> Log in </button>
+            </Form>
+          </Formik>
         </FormWrapper>
         <h3>
           Don't have an account? <Link to="/signup">Sign up</Link>{" "}
