@@ -80,27 +80,27 @@ const Signup = () => {
               <div className="formControl">
                 <label htmlFor="firstname">First Name</label>
                 <Field type="text" className="first_name" name="first_name" />
-                <ErrorMessage name="first_name" />
+                <ErrorMessage name="first_name" component="div" />
               </div>
               <div className="formControl">
                 <label htmlFor="lastname">Last Name</label>
                 <Field type="text" className="last_name" name="last_name" />
-                <ErrorMessage name="last_name" />
+                <ErrorMessage name="last_name" component="div" />
               </div>
               <div className="formControl">
                 <label htmlFor="brandname">Brand Name</label>
                 <Field type="text" className="brand_name" name="brand_name" />
-                <ErrorMessage name="brand_name" />
+                <ErrorMessage name="brand_name" component="div" />
               </div>
               <div className="formControl">
                 <label htmlFor="email">Email</label>
                 <Field type="email" className="email" name="email" />
-                <ErrorMessage name="email" />
+                <ErrorMessage name="email" component="div" />
               </div>
               <div className="formControl">
                 <label htmlFor="password">Password</label>
                 <Field type="password" className="password" name="password" />
-                <ErrorMessage name="password" />
+                <ErrorMessage name="password" component="div" />
               </div>
               <div className="formControl">
                 <label htmlFor="confirmpassword">Confirm Password</label>
@@ -109,7 +109,7 @@ const Signup = () => {
                   className="confirm_password"
                   name="confirm_password"
                 />
-                <ErrorMessage name="confirm_password" />
+                <ErrorMessage name="confirm_password" component="div" />
               </div>
 
               <button type="submit"> Create Account </button>

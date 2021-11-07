@@ -58,12 +58,12 @@ const Login = ({ isAuth, setIsAuth }) => {
               <div className="formControl">
                 <label htmlFor="email">Email</label>
                 <Field type="email" className="email" name="email" />
-                <ErrorMessage name="email" />
+                <ErrorMessage name="email" component="div" />
               </div>
               <div className="formControl">
                 <label htmlFor="password">Password</label>
                 <Field type="password" className="password" name="password" />
-                <ErrorMessage name="password" />
+                <ErrorMessage name="password" component="div" />
               </div>
 
               <button type="submit"> Log in </button>
@@ -71,7 +71,10 @@ const Login = ({ isAuth, setIsAuth }) => {
           </Formik>
         </FormWrapper>
         <h3>
-          Don't have an account? <Link to="/signup">Sign up</Link>{" "}
+          Don't have an account?
+          <Link to="/signup" className="styledLink">
+            Sign up
+          </Link>
         </h3>
       </Container>
     </>

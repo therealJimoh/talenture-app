@@ -47,7 +47,7 @@ export const FormWrapper = styled.div`
     width: 65%;
     margin: 5px auto;
 
-    .errors {
+    div {
       color: red;
       font-size: 12px;
     }
